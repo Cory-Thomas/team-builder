@@ -8,12 +8,25 @@ const initialFormValues = {
 }
 
 function App() {
-  const [member, setMember] = useState([]);
-
+  const [members, setMembers] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues) 
 
   const updateForm = (inputName, inputValue) => { 
     setFormValues({ ...formValues, [inputName]: inputValue })
+  }
+
+  const submitForm = () => {
+    const addMember = {...formValues};
+    const teamMember = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      role: formValues.role,
+    }
+
+    if (!teamMember.name || !teamMember.email) return
+
+    setMembers([addMember, ...members]);
+    setFormValues(initialFormValues)
   }
 
   return (
@@ -23,7 +36,20 @@ function App() {
       <Form 
         values={formValues}
         update={updateForm}
+        submit={submitForm}
       />
+
+      {
+        members.map(member => {
+        return (
+          <div>
+            <p>Name: {member.name}</p>
+            <p>Email: {member.email}</p>
+            <p>Role: {member.role}</p>
+          </div>
+        )
+        })
+      }
     </div>
   );
 }

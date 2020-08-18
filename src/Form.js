@@ -1,4 +1,13 @@
 import React from "react";
+import style from "styled-components";
+
+const StyledForm = style.form`
+  width: 80%;
+  margin: 0 auto;
+  div, button {
+      margin-top: 1%;
+  }
+`
 
 export default function Form({values, update, submit}){
     const onChange = evt => {
@@ -12,7 +21,7 @@ export default function Form({values, update, submit}){
       }  
 
     return(
-        <form onSubmit={onSubmit}>
+        <StyledForm onSubmit={onSubmit}>
             <div>
                 <label htmlFor="name">Name: </label>
                 <input 
@@ -47,6 +56,6 @@ export default function Form({values, update, submit}){
                 </select>
             </div>
             <button disabled={!values.name || !values.email || !values.role ? true : false}>Submit</button>
-        </form>
+        </StyledForm>
     )
 }

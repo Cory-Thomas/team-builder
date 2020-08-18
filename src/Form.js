@@ -4,8 +4,14 @@ import style from "styled-components";
 const StyledForm = style.form`
   width: 80%;
   margin: 0 auto;
+
   div, button {
       margin-top: 1%;
+  }
+  
+  input {
+      padding: .2%;
+      text-align: center;
   }
 `
 
